@@ -15,7 +15,11 @@ class Cell {
 }
 
 const countNeighbours = ({ x, y }: Cell, cells: Cell[]) => {
-  const neighbours = cells.filter(c => Math.abs(x - c.x) <= 1 && Math.abs(y - c.y) <= 1);
+  const neighbours = cells.filter(c => {
+    const isNearby = Math.abs(x - c.x) <= 1 && Math.abs(y - c.y) <= 1;
+    const isNotSelf = !(x === c.x && y === c.y);
+    return isNearby && isNotSelf;
+  });
   return neighbours.length;
 };
 
@@ -96,6 +100,18 @@ describe("game", () => {
       // Given
       const cell: Cell = new Cell(0, 0);
       const cells: Cell[] = [new Cell(1, 0), new Cell(0, 1337)];
+
+      // When
+      const result = countNeighbours(cell, cells);
+
+      // Then
+      expect(result).toBe(1);
+    });
+
+    it("Should count 1 neighbour and shouldn't count itself", () => {
+      // Given
+      const cell: Cell = new Cell(0, 0);
+      const cells: Cell[] = [new Cell(1, 0), new Cell(0, 0)];
 
       // When
       const result = countNeighbours(cell, cells);
