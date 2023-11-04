@@ -7,7 +7,7 @@ const survive: SurviveFn = (neighbours) => {
 
 type Cell = {};
 
-const countNeighbours = (cell: Cell, cells: Cell[]) => 0;
+const countNeighbours = (cell: Cell, cells: Cell[]) => cells.length;
 
 // TCR - Test and Commit or Revert!
 describe("game", () => {
@@ -68,6 +68,18 @@ describe("game", () => {
 
       // Then
       expect(result).toBe(0);
+    });
+
+    it("Should count 2 neighbours.", () => {
+      // Given
+      const cell: Cell = {};
+      const cells: Cell[] = [{}, {}];
+
+      // When
+      const result = countNeighbours(cell, cells);
+
+      // Then
+      expect(result).toBe(2);
     });
   });
 });
