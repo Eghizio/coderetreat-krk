@@ -23,7 +23,10 @@ const countNeighbours = ({ x, y }: Cell, cells: Cell[]) => {
   return neighbours.length;
 };
 
-const nextGeneration = (cells: Cell[]): Cell[] => cells;
+const nextGeneration = (cells: Cell[]): Cell[] => {
+  const survivors = cells.filter(c => survive(countNeighbours(c, cells)));
+  return survivors;
+};
 
 // TCR - Test and Commit or Revert!
 describe("game", () => {
@@ -148,6 +151,17 @@ describe("game", () => {
 
       // Then
       expect(nextCells.length).toBe(4);
+    });
+
+    it("Single Cell should die", () => {
+      // Given
+      const cells: Cell[] = [new Cell(0, 0)];
+
+      // When
+      const nextCells = nextGeneration(cells);
+
+      // Then
+      expect(nextCells.length).toBe(0);
     });
   });
 });
