@@ -23,6 +23,8 @@ const countNeighbours = ({ x, y }: Cell, cells: Cell[]) => {
   return neighbours.length;
 };
 
+const nextGeneration = (cells: Cell[]): Cell[] => [];
+
 // TCR - Test and Commit or Revert!
 describe("game", () => {
   describe("survive", () => {
@@ -118,6 +120,19 @@ describe("game", () => {
 
       // Then
       expect(result).toBe(1);
+    });
+  });
+
+  describe("nextGeneration", () => {
+    it("Empty board stays empty", () => {
+      // Given
+      const cells: Cell[] = [];
+
+      // When
+      const nextCells = nextGeneration(cells);
+
+      // Then
+      expect(nextCells.length).toBe(0);
     });
   });
 });
