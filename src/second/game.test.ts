@@ -4,8 +4,19 @@ const survive: SurviveFn = (neighbours) => {
   return neighbours == 2 || neighbours == 3;
 };
 
+class Cell {
+  x: number;
+  y: number;
 
-type Cell = {};
+  constructor(x: number = 0, y: number = 0) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+
+
+
 
 const countNeighbours = (cell: Cell, cells: Cell[]) => cells.length;
 
@@ -60,7 +71,7 @@ describe("game", () => {
   describe("countNeighbours", () => {
     it("No neighbours on empty cells.", () => {
       // Given
-      const cell: Cell = {};
+      const cell: Cell = new Cell();
       const cells: Cell[] = [];
 
       // When
@@ -72,8 +83,8 @@ describe("game", () => {
 
     it("Should count 2 neighbours.", () => {
       // Given
-      const cell: Cell = {};
-      const cells: Cell[] = [{}, {}];
+      const cell: Cell = new Cell(0, 0);
+      const cells: Cell[] = [new Cell(1, 0), new Cell(0, 1)];
 
       // When
       const result = countNeighbours(cell, cells);
