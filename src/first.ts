@@ -1,1 +1,0 @@
-export const dupa = (a: number, b: number) => a+b;
