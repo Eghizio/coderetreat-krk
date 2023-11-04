@@ -23,7 +23,7 @@ const countNeighbours = ({ x, y }: Cell, cells: Cell[]) => {
   return neighbours.length;
 };
 
-const nextGeneration = (cells: Cell[]): Cell[] => [];
+const nextGeneration = (cells: Cell[]): Cell[] => cells;
 
 // TCR - Test and Commit or Revert!
 describe("game", () => {
@@ -123,6 +123,7 @@ describe("game", () => {
     });
   });
 
+  // https://en.wikipedia.org/wiki/Conway's_Game_of_Life#Examples_of_patterns
   describe("nextGeneration", () => {
     it("Empty board stays empty", () => {
       // Given
@@ -133,6 +134,20 @@ describe("game", () => {
 
       // Then
       expect(nextCells.length).toBe(0);
+    });
+
+    it("Cells Block (2x2) should survive", () => {
+      // Given
+      const cells: Cell[] = [
+        new Cell(0, 0), new Cell(1, 0),
+        new Cell(0, 1), new Cell(1, 1),
+      ];
+
+      // When
+      const nextCells = nextGeneration(cells);
+
+      // Then
+      expect(nextCells.length).toBe(4);
     });
   });
 });
