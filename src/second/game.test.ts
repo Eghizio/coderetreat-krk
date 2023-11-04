@@ -16,6 +16,17 @@ describe("game", () => {
     expect(result).toBe(true);
   });
 
+  test("Cell should survive for 3 neighbours", () => {
+    // Given
+    const neighbours = 3;
+
+    // When
+    const result = survive(neighbours);
+
+    // Then
+    expect(result).toBe(true);
+  });
+
   test("Cell should die for less than 2 neighbours", () => {
     // Given
     const neighbours = 1;
