@@ -58,14 +58,16 @@ describe("game", () => {
   });
 
   describe("countNeighbours", () => {
-    // Given
-    const cell: Cell = {};
-    const cells: Cell[] = [{}, {}];
+    it("No neighbours on empty cells.", () => {
+      // Given
+      const cell: Cell = {};
+      const cells: Cell[] = [];
 
-    // When
-    const result = countNeighbours(cell, cells);
+      // When
+      const result = countNeighbours(cell, cells);
 
-    // Then
-    expect(result).toBe(0);
+      // Then
+      expect(result).toBe(0);
+    });
   });
 });
